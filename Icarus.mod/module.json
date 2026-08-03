@@ -1,0 +1,188 @@
+{
+  "id": "icarus",
+  "name": "Icarus Dedicated Server",
+  "version": "1.0.0",
+  "author": "Shenniko",
+  "description": "WindowsGSH module for installing, configuring, launching, and backing up an Icarus dedicated server.",
+  "url": "https://github.com/WindowsGSH/WindowsGSH.Icarus",
+  "homepage": "https://surviveicarus.com/",
+  "repository": "https://github.com/WindowsGSH/WindowsGSH.Icarus",
+  "sourceUrl": "https://github.com/WindowsGSH/WindowsGSH.Icarus",
+  "color": "#1E8449",
+  "moduleApiVersion": "1.0",
+  "minimumWindowsGshVersion": "0.1.0",
+  "type": "csharp",
+  "entry": "WindowsGSH.Modules.Icarus.IcarusModule",
+  "steam": {
+    "appId": "2089300",
+    "anonymous": true,
+    "validate": true
+  },
+  "entryPoints": {
+    "start": "Icarus/Binaries/win64/IcarusServer-Win64-Shipping.exe",
+    "processName": "IcarusServer-Win64-Shipping"
+  },
+  "runtime": {
+    "allowsEmbeddedConsole": true,
+    "portIncrements": 10,
+    "queryProtocol": "A2S",
+    "defaultArguments": ""
+  },
+  "capabilities": {
+    "directConnection": true
+  },
+  "configFields": [
+    {
+      "key": "server.name",
+      "label": "Server Name",
+      "type": "Text",
+      "defaultValue": "Icarus Dedicated Server",
+      "required": true,
+      "group": "Server"
+    },
+    {
+      "key": "server.joinPassword",
+      "label": "Join Password",
+      "type": "Password",
+      "defaultValue": "",
+      "group": "Server"
+    },
+    {
+      "key": "server.adminPassword",
+      "label": "Admin Password",
+      "type": "Password",
+      "defaultValue": "",
+      "group": "Server"
+    },
+    {
+      "key": "server.maxPlayers",
+      "label": "Max Players",
+      "type": "Number",
+      "defaultValue": 8,
+      "required": true,
+      "minimum": 1,
+      "maximum": 8,
+      "group": "Server"
+    },
+    {
+      "key": "network.port",
+      "label": "Server Port",
+      "type": "Port",
+      "defaultValue": 17777,
+      "required": true,
+      "minimum": 1,
+      "maximum": 65535,
+      "group": "Network"
+    },
+    {
+      "key": "network.queryPort",
+      "label": "Query Port",
+      "type": "Port",
+      "defaultValue": 27015,
+      "required": true,
+      "minimum": 1,
+      "maximum": 65535,
+      "group": "Network"
+    },
+    {
+      "key": "network.publicIp",
+      "label": "Public IP",
+      "type": "Text",
+      "defaultValue": "",
+      "group": "Network"
+    },
+    {
+      "key": "server.shutdownIfNotJoinedFor",
+      "label": "Shutdown If Not Joined For",
+      "type": "Number",
+      "defaultValue": 300.0,
+      "minimum": -1.0,
+      "group": "Server"
+    },
+    {
+      "key": "server.shutdownIfEmptyFor",
+      "label": "Shutdown If Empty For",
+      "type": "Number",
+      "defaultValue": 300.0,
+      "minimum": -1.0,
+      "group": "Server"
+    },
+    {
+      "key": "prospect.allowNonAdminsToLaunch",
+      "label": "Non-admins Can Launch Prospects",
+      "type": "Boolean",
+      "defaultValue": true,
+      "group": "Prospects"
+    },
+    {
+      "key": "prospect.allowNonAdminsToDelete",
+      "label": "Non-admins Can Delete Prospects",
+      "type": "Boolean",
+      "defaultValue": false,
+      "group": "Prospects"
+    },
+    {
+      "key": "prospect.loadProspect",
+      "label": "Load Prospect",
+      "type": "Text",
+      "defaultValue": "",
+      "group": "Prospects"
+    },
+    {
+      "key": "prospect.createProspect",
+      "label": "Create Prospect",
+      "type": "Text",
+      "defaultValue": "",
+      "group": "Prospects"
+    },
+    {
+      "key": "prospect.resumeProspect",
+      "label": "Resume Prospect",
+      "type": "Boolean",
+      "defaultValue": true,
+      "group": "Prospects"
+    },
+    {
+      "key": "prospect.lastProspectName",
+      "label": "Last Prospect Name",
+      "type": "Text",
+      "defaultValue": "",
+      "group": "Prospects"
+    },
+    {
+      "key": "server.additionalArguments",
+      "label": "Additional Arguments",
+      "type": "CommandLine",
+      "defaultValue": "",
+      "group": "Launch"
+    }
+  ],
+  "ports":   [
+      {
+          "id":  "game",
+          "name":  "Game Port",
+          "protocol":  "udp",
+          "configField":  "network.port",
+          "required":  true,
+          "checkLocalListener":  false
+      },
+      {
+          "id":  "query",
+          "name":  "Query Port",
+          "protocol":  "udp",
+          "configField":  "network.queryPort",
+          "required":  true
+      }
+  ],
+  "backupTargets": [
+    {
+      "key": "saved",
+      "label": "Saved Data",
+      "path": "Icarus/Saved",
+      "type": "directory",
+      "required": true
+    }
+  ],
+  "addons": []
+}
+
